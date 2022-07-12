@@ -29,7 +29,6 @@ def only_headers(data):
 
 adress_and_port = (LOCALHOST, random_port())
 my_socket.bind(adress_and_port)
-print(adress_and_port)
 my_socket.listen(BACKLOG)
 conn, addr = my_socket.accept()
 

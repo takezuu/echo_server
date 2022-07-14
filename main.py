@@ -29,10 +29,10 @@ def only_headers(data):
 
 adress_and_port = (LOCALHOST, random_port())
 my_socket.bind(adress_and_port)
-my_socket.listen(BACKLOG)
-conn, addr = my_socket.accept()
 while True:
     try:
+        my_socket.listen(BACKLOG)
+        conn, addr = my_socket.accept()
         data = conn.recv(1024)
         data = data.decode("utf-8")
         splitted_data = data.split()
@@ -40,6 +40,7 @@ while True:
         method = splitted_data[0]
         num = only_headers(splitted_data)
         conn.send(f"HTTP/1.1 {status}\n Content-Length: 100\n Connection: close\n Content-Type: text/html\n\nRequest headers:\n{data[num:]}Request method: {method}\nRequest status: {status}".encode("utf-8"))
+        conn.close()
     except KeyboardInterrupt:
         break
         

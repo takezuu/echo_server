@@ -39,7 +39,7 @@ while True:
         status = search_status(splitted_data[1])
         method = splitted_data[0]
         num = only_headers(splitted_data)
-        conn.send(f"HTTP/1.1 {status}\n Content-Length: 100\n Connection: close\n Content-Type: text/html\n\nRequest headers:\n{data[num:]}Request method: {method}\nRequest status: {status}".encode("utf-8"))
+        conn.send(f"HTTP/1.1 {status}\n Content-Length: 100\n Connection: close\n Content-Type: text/html\n\nRequest headers:\n{data[num:]}Request method: {method}\nRequest status: {status}\n".encode("utf-8"))
         conn.close()
     except KeyboardInterrupt:
         break
